@@ -1,59 +1,192 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Zin Fábrica - Panel de Administración y Sitio Web
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Plataforma web para gestión y visualización de productos de bebidas sin alcohol, construida con Laravel 11, Inertia.js y Vue 3.
 
-## About Laravel
+## 🍹 Acerca del Proyecto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Zin Fábrica es una aplicación web full-stack que combina un sitio público elegante con un potente panel de administración para gestionar productos artesanales de bebidas sin alcohol. El proyecto incluye gestión de inventario, categorías, puntos de venta y una experiencia de usuario moderna.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Características Principales
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Panel de Administración (Autenticado)
+- **Gestión de Productos**: CRUD completo con soporte para múltiples fotos y precios
+- **Categorías**: Organización y clasificación de productos
+- **Puntos de Venta**: Administración de locaciones con ubicación, contacto y redes sociales
+- **Relaciones**: Vinculación de categorías con puntos de venta
+- **Autenticación**: Sistema de login y gestión de perfiles
 
-## Learning Laravel
+### Sitio Público
+- **Home**: Página principal con productos destacados y presentación de marca
+- **Shop**: Catálogo completo con paginación (10 productos por página)
+- **Dónde Encontrarnos**: Directorio de puntos de venta con mapa de categorías disponibles
+- **Contacto**: Formulario de consultas
+- **Diseño Responsivo**: Experiencia optimizada para móvil, tablet y desktop
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ Stack Tecnológico
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend**: Laravel 11
+- **Frontend**: Vue 3 + Inertia.js
+- **Estilos**: Bootstrap 5.3 + Bootstrap Icons
+- **Base de Datos**: MySQL/MariaDB
+- **Build**: Vite
 
-## Laravel Sponsors
+## 📋 Requisitos
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- PHP >= 8.2
+- Composer
+- Node.js >= 18
+- NPM o Yarn
+- MySQL >= 8.0 o MariaDB
 
-### Premium Partners
+## 🚀 Instalación
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. **Clonar el repositorio**
+```bash
+git clone <repository-url>
+cd fernando
+```
 
-## Contributing
+2. **Instalar dependencias de PHP**
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Instalar dependencias de Node**
+```bash
+npm install
+```
 
-## Code of Conduct
+4. **Configurar variables de entorno**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Configurar base de datos**
 
-## Security Vulnerabilities
+Editar `.env` con las credenciales de tu base de datos:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=zin_fabrica
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. **Ejecutar migraciones**
+```bash
+php artisan migrate
+```
 
-## License
+7. **Crear storage link**
+```bash
+php artisan storage:link
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+8. **Compilar assets**
+
+Desarrollo:
+```bash
+npm run dev
+```
+
+Producción:
+```bash
+npm run build
+```
+
+9. **Iniciar servidor**
+```bash
+php artisan serve
+```
+
+La aplicación estará disponible en `http://localhost:8000`
+
+## 📁 Estructura del Proyecto
+
+```
+app/
+├── Http/Controllers/
+│   ├── CategoryController.php
+│   ├── ProductController.php
+│   └── SalePointController.php
+├── Models/
+│   ├── Category.php
+│   ├── Product.php
+│   ├── ProductPhoto.php
+│   └── SalePoint.php
+database/
+├── migrations/
+│   ├── create_categories_table.php
+│   ├── create_products_table.php
+│   ├── create_product_photos_table.php
+│   ├── create_sale_points_table.php
+│   └── category_sale_point.php
+resources/
+├── css/
+│   └── app.css
+├── js/
+│   ├── Components/
+│   │   ├── ApplicationLogo.vue
+│   │   ├── Dropdown.vue
+│   │   └── NavLink.vue
+│   ├── Layouts/
+│   │   └── AuthenticatedLayout.vue
+│   └── Pages/
+│       ├── Welcome.vue
+│       ├── Dashboard.vue
+│       ├── Categories/Index.vue
+│       ├── Products/Index.vue
+│       ├── SalePoints/Index.vue
+│       └── Shop/Index.vue
+```
+
+## 🗄️ Base de Datos
+
+### Modelos y Relaciones
+
+- **Product**: `belongsTo` Category, `hasMany` ProductPhoto
+- **Category**: `hasMany` Products, `belongsToMany` SalePoints
+- **SalePoint**: `belongsToMany` Categories
+- **ProductPhoto**: `belongsTo` Product
+
+## 🎨 Características de UI/UX
+
+- Diseño oscuro elegante con acentos verdes (#2a4c3b)
+- Componentes reutilizables con Bootstrap 5
+- Iconos de Bootstrap Icons integrados
+- Modales para formularios
+- Validación en tiempo real
+- Mensajes flash de éxito/error
+- Navegación contextual según estado de autenticación
+
+## 🔐 Autenticación
+
+El sistema utiliza Laravel Breeze con Inertia.js para proporcionar:
+- Registro de usuarios
+- Login/Logout
+- Recuperación de contraseña
+- Gestión de perfil
+
+## 📝 Rutas Principales
+
+### Públicas
+- `/` - Home
+- `/shop` - Catálogo de productos
+
+### Autenticadas
+- `/dashboard` - Panel principal
+- `/categories` - Gestión de categorías
+- `/products` - Gestión de productos
+- `/sale-points` - Gestión de puntos de venta
+- `/profile` - Perfil de usuario
+
+## 🤝 Contribución
+
+Este es un proyecto personalizado para Zin Fábrica. Para contribuciones o consultas, contactar al equipo de desarrollo.
+
+## 📄 Licencia
+
+Este proyecto es propiedad de Zin Fábrica. Todos los derechos reservados.
+
