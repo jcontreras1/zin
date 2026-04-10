@@ -70,6 +70,8 @@ const maxWidthStyle = computed(() => {
         lg: '32rem',
         xl: '36rem',
         '2xl': '42rem',
+        '4xl': '56rem',
+        '5xl': '72rem',
     };
 
     return {

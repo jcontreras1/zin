@@ -44,6 +44,11 @@ const showingNavigationDropdown = ref(false);
                                 Puntos de Venta
                             </NavLink>
                         </li>
+                        <li class="nav-item">
+                            <NavLink :href="route('images.index')" :active="route().current('images.*')">
+                                Imágenes
+                            </NavLink>
+                        </li>
                     </ul>
 
                     <div class="ms-md-auto mt-3 mt-md-0 d-flex flex-column flex-md-row align-items-md-center gap-3 text-white-50">

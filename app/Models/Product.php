@@ -18,6 +18,7 @@ class Product extends Model
         'description_one',
         'description_two',
         'price',
+        'sort_order',
     ];
 
     /** @var array<string, string> */

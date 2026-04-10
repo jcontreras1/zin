@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index(): Response
     {
         $products = Product::with(['photos', 'category'])
-            ->orderByDesc('created_at')
+            ->orderBy('sort_order')
             ->get()
             ->map(fn (Product $product) => [
                 'id' => $product->id,
@@ -28,6 +28,7 @@ class ProductController extends Controller
                 'price_formatted' => number_format((float) $product->price, 2, ',', '.'),
                 'category_id' => $product->category_id,
                 'category_name' => $product->category?->name,
+                'sort_order' => $product->sort_order,
                 'created_at' => $product->created_at?->toDateTimeString(),
                 'photos' => $product->photos->map(fn (ProductPhoto $photo) => [
                     'id' => $photo->id,
@@ -59,12 +60,15 @@ class ProductController extends Controller
         ]);
 
         DB::transaction(function () use ($request, $validated): void {
+            $maxSortOrder = Product::max('sort_order') ?? -1;
+
             $product = Product::create([
                 'category_id' => $validated['category_id'] ?? null,
                 'title' => $validated['title'],
                 'description_one' => $validated['description_one'],
                 'description_two' => $validated['description_two'] ?? null,
                 'price' => $validated['price'],
+                'sort_order' => $maxSortOrder + 1,
             ]);
 
             foreach ($request->file('photos', []) as $index => $file) {
@@ -121,6 +125,20 @@ class ProductController extends Controller
         });
 
         return redirect()->route('products.index')->with('success', 'Producto actualizado correctamente.');
+    }
+
+    public function reorder(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $validated = $request->validate([
+            'ids' => ['required', 'array'],
+            'ids.*' => ['integer', 'exists:products,id'],
+        ]);
+
+        foreach ($validated['ids'] as $index => $id) {
+            Product::where('id', $id)->update(['sort_order' => $index]);
+        }
+
+        return response()->json(['ok' => true]);
     }
 
     public function destroy(Product $product): RedirectResponse

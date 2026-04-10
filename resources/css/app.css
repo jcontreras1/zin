@@ -1,5 +1,15 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap'); */
+
+@font-face {
+	font-family: 'RoyalCouture';
+	src: 
+	url('../fonts/RoyaleCouture-Sans.ttf') format('truetype'),
+		url('../fonts/RoyaleCouture-Script.ttf') format('truetype');
+		  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
 	--zin-bg: #041912;
@@ -15,12 +25,12 @@
 body {
 	background-color: #f8f9fa;
 	color: #212529;
-	font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	font-family: 'RoyalCouture', sans-serif;
 	min-height: 100vh;
 }
 
 .font-display {
-	font-family: 'Playfair Display', 'Times New Roman', serif;
+	font-family: 'RoyalCouture', 'Times New Roman', serif;
 }
 
 .zin-page {

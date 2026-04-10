@@ -1,5 +1,6 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
+import axios from 'axios';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm, usePage, router } from '@inertiajs/vue3';
 
@@ -14,8 +15,27 @@ const props = defineProps({
     },
 });
 
-const products = computed(() => props.products ?? []);
+const sortedProducts = ref([...(props.products ?? [])]);
+const products = computed(() => sortedProducts.value);
 const categories = computed(() => props.categories ?? []);
+
+watch(() => props.products, (val) => {
+    sortedProducts.value = [...(val ?? [])];
+});
+
+const moveProduct = async (index, direction) => {
+    const list = sortedProducts.value;
+    const targetIndex = index + direction;
+    if (targetIndex < 0 || targetIndex >= list.length) return;
+
+    const updated = [...list];
+    [updated[index], updated[targetIndex]] = [updated[targetIndex], updated[index]];
+    sortedProducts.value = updated;
+
+    await axios.post(route('products.reorder'), {
+        ids: updated.map((p) => p.id),
+    });
+};
 
 const page = usePage();
 const flashSuccess = computed(() => page.props.flash?.success ?? null);
@@ -155,6 +175,7 @@ const deleteProduct = (product) => {
                         <table class="table align-middle mb-0">
                             <thead class="table-light">
                                 <tr>
+                                    <th class="text-center" style="width: 80px;">Orden</th>
                                     <th>Título</th>
                                     <th>Categoría</th>
                                     <th width="28%">Descripción 1</th>
@@ -165,7 +186,27 @@ const deleteProduct = (product) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="product in products" :key="product.id">
+                                <tr v-for="(product, index) in products" :key="product.id">
+                                    <td class="text-center">
+                                        <div class="d-flex flex-column align-items-center gap-1">
+                                            <button
+                                                type="button"
+                                                class="btn btn-outline-secondary btn-sm p-0 lh-1"
+                                                style="width: 24px; height: 24px;"
+                                                :disabled="index === 0"
+                                                @click="moveProduct(index, -1)"
+                                                title="Subir"
+                                            ><i class="bi bi-chevron-up"></i></button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-outline-secondary btn-sm p-0 lh-1"
+                                                style="width: 24px; height: 24px;"
+                                                :disabled="index === products.length - 1"
+                                                @click="moveProduct(index, 1)"
+                                                title="Bajar"
+                                            ><i class="bi bi-chevron-down"></i></button>
+                                        </div>
+                                    </td>
                                     <td>
                                         <div class="fw-semibold">{{ product.title }}</div>
                                         <small class="text-muted">Actualizado: {{ product.created_at }}</small>
