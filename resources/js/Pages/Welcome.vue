@@ -82,7 +82,7 @@ const milestones = [
     {
         year: '2025',
         title: 'Catad’Or World Wine Awards 2025',
-        copy: 'Segundo Lugar',
+        copy: 'Medalla de Plata',
         image: 'storage/gallery/milestone-catador-2025.jpg',
     },
     // {
@@ -99,7 +99,7 @@ const milestones = [
 
 const navLinks = computed(() => [
     { label: 'Inicio', href: '#inicio', type: 'anchor' },
-    { label: 'Shop', href: 'shop', type: 'route' },
+    { label: 'Shop', href: 'https://shop.zin.com.ar/', type: 'anchor' },
     ...(milestones.length > 0 ? [{ label: 'Reconocimientos', href: '#reconocimientos', type: 'anchor' }] : []),
     ...(props.salePoints?.length ? [{ label: 'Dónde Encontrarnos', href: '#donde-encontrarnos', type: 'anchor' }] : []),
     { label: 'Contacto', href: '#contacto', type: 'anchor' },
@@ -330,7 +330,7 @@ const submitContact = () => {
                         </p>
                         <h3 class="font-display zin-section-title mt-3 pt-4">Visión</h3>
                         <p class="zin-muted mt-4">
-                            Ser una marca referente en bebidas sin alcohol, liderando una nueva forma de disfrutar,
+                            Ser una marca referente en bebidas sin alcohol, liderando una nueva forma de disfrutar,  
                             donde el
                             sabor, la salud y la inclusión conviven en cada encuentro.
                             <br>
@@ -341,17 +341,12 @@ const submitContact = () => {
                         </p>
                         <h3 class="font-display zin-section-title mt-3 pt-4">Valores</h3>
 
-                        <ul class="list-unstyled mt-4 d-flex flex-column gap-3">
-                            <li v-for="(value, key) in {
-                                inclusion: 'Inclusión: creemos que todos deberían poder participar plenamente en los momentos sociales.',
-                                bienestar: 'Bienestar: desarrollamos productos pensados para cuidar la salud, con bajo contenido de azúcar y enfoque en ingredientes de calidad.',
-                                innovacion: 'Innovación: creemos en la creatividad constante. Creamos recetas propias, explorando nuevas formas de disfrutar bebidas complejas sin alcohol.',
-                                responsabilidad: 'Responsabilidad: promovemos el consumo consciente y alternativas seguras para quienes practican deporte o eligen no consumir alcohol.'
-                            }" :key="key" class="d-flex gap-3">
-                                <div class="zin-badge flex-shrink-0" style="width: 4px; height: 4px; margin-top: 8px;"></div>
-                                <p class="zin-muted mb-0"><strong>{{ key.charAt(0).toUpperCase() + key.slice(1) }}:</strong> {{ value.split(': ').slice(1).join(': ') }}</p>
-                            </li>
-                        </ul>
+                        <div class="mt-4 d-flex flex-column gap-3">
+                            <p class="zin-muted mb-0"><strong>Inclusión:</strong> creemos que todos deberían poder participar plenamente en los momentos sociales.</p>
+                            <p class="zin-muted mb-0"><strong>Bienestar:</strong> desarrollamos productos pensados para cuidar la salud, con bajo contenido de azúcar y enfoque en ingredientes de calidad.</p>
+                            <p class="zin-muted mb-0"><strong>Innovación:</strong> creemos en la creatividad constante. Creamos recetas propias, explorando nuevas formas de disfrutar bebidas complejas sin alcohol.</p>
+                            <p class="zin-muted mb-0"><strong>Responsabilidad:</strong> promovemos el consumo consciente y alternativas seguras para quienes practican deporte o eligen no consumir alcohol.</p>
+                        </div>
 
 
                         <div class="row g-3 mt-4">
